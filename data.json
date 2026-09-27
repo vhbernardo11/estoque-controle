@@ -1,11 +1,11 @@
 {
   "updated_at": "27/09/2026",
   "balances": {
-    "nubank_actual": 479.33,
+    "nubank_actual": 599.33,
     "broker_patrimony": 140.58,
     "broker_available": 0,
     "broker_future": 140.58,
-    "total_visible": 619.91
+    "total_visible": 739.91
   },
   "trading": {
     "total_gross": 244,
@@ -141,8 +141,15 @@
         "date": "27/09",
         "description": "Almoço",
         "amount": -29
+      },
+      {
+        "date": "27/09",
+        "description": "Recebimento ARMAZÉM",
+        "amount": 120
       }
-    ]
+    ],
+    "receipts_since_25": 120,
+    "net_since_25": -182.5
   },
   "tax": {
     "fiscal_result": -30,
