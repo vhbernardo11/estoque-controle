@@ -1,142 +1,146 @@
 {
   "updated_at": "27/09/2026",
-  "cash": {
-    "personal": 114.01,
-    "company_nubank": 365.32,
-    "company_broker": 140.58,
-    "company_total": 505.9,
-    "nubank_total": 479.33,
-    "total": 619.91
+  "balances": {
+    "nubank_actual": 479.33,
+    "broker_patrimony": 140.58,
+    "broker_available": 0,
+    "broker_future": 140.58,
+    "total_visible": 619.91
   },
-  "personal_movements": [
-    {
-      "date": "25/09",
-      "description": "Jucelen",
-      "amount": -17.75,
-      "balance_after": 398.76
-    },
-    {
-      "date": "25/09",
-      "description": "Supermercado",
-      "amount": -93.8,
-      "balance_after": 304.96
-    },
-    {
-      "date": "25/09",
-      "description": "Farmácia",
-      "amount": -25.42,
-      "balance_after": 279.54
-    },
-    {
-      "date": "26/09",
-      "description": "Farmácia",
-      "amount": -19.7,
-      "balance_after": 259.84
-    },
-    {
-      "date": "26/09",
-      "description": "Jucelen",
-      "amount": -15,
-      "balance_after": 244.84
-    },
-    {
-      "date": "26/09",
-      "description": "Café da tarde",
-      "amount": -35,
-      "balance_after": 209.84
-    },
-    {
-      "date": "26/09",
-      "description": "Farmácia Imperial",
-      "amount": -54.83,
-      "balance_after": 155.01
-    },
-    {
-      "date": "26/09",
-      "description": "Cigarro / Posto Fórmula 1",
-      "amount": -12,
-      "balance_after": 143.01
-    },
-    {
-      "date": "27/09",
-      "description": "Almoço",
-      "amount": -29,
-      "balance_after": 114.01
-    }
-  ],
   "trading": {
-    "accumulated_net": -38.23,
     "total_gross": 244,
-    "total_costs_irrf": 282.23,
+    "bmf_expenses": 274,
+    "irrf_daytrade": 8.23,
+    "accumulated_net": -38.23,
     "last_day": {
       "date": "25/09",
       "gross": 144,
-      "costs_irrf": 3.42,
+      "bmf_expenses": 2,
+      "irrf": 1.42,
       "net": 140.58
     },
     "days": [
       {
         "date": "15/09",
         "gross": -399,
-        "costs_irrf": 34,
+        "bmf_expenses": 34,
+        "irrf": 0,
         "net": -433,
         "acc": -433
       },
       {
         "date": "16/09",
         "gross": -163,
-        "costs_irrf": 20.5,
+        "bmf_expenses": 20.5,
+        "irrf": 0,
         "net": -183.5,
         "acc": -616.5
       },
       {
         "date": "17/09",
         "gross": 207,
-        "costs_irrf": 9,
+        "bmf_expenses": 7,
+        "irrf": 2,
         "net": 198,
         "acc": -418.5
       },
       {
         "date": "18/09",
         "gross": 114,
-        "costs_irrf": 2.13,
+        "bmf_expenses": 1,
+        "irrf": 1.13,
         "net": 111.87,
         "acc": -306.63
       },
       {
         "date": "21/09",
         "gross": 26,
-        "costs_irrf": 38.5,
+        "bmf_expenses": 38.5,
+        "irrf": 0,
         "net": -12.5,
         "acc": -319.13
       },
       {
         "date": "22/09",
         "gross": -154,
-        "costs_irrf": 71,
+        "bmf_expenses": 71,
+        "irrf": 0,
         "net": -225,
         "acc": -544.13
       },
       {
         "date": "23/09",
         "gross": 229,
-        "costs_irrf": 34.46,
+        "bmf_expenses": 32.5,
+        "irrf": 1.96,
         "net": 194.54,
         "acc": -349.59
       },
       {
         "date": "24/09",
         "gross": 240,
-        "costs_irrf": 69.22,
+        "bmf_expenses": 67.5,
+        "irrf": 1.72,
         "net": 170.78,
         "acc": -178.81
       },
       {
         "date": "25/09",
         "gross": 144,
-        "costs_irrf": 3.42,
+        "bmf_expenses": 2,
+        "irrf": 1.42,
         "net": 140.58,
         "acc": -38.23
+      }
+    ]
+  },
+  "personal": {
+    "spending_since_25": 302.5,
+    "movements": [
+      {
+        "date": "25/09",
+        "description": "Jucelen",
+        "amount": -17.75
+      },
+      {
+        "date": "25/09",
+        "description": "Supermercado",
+        "amount": -93.8
+      },
+      {
+        "date": "25/09",
+        "description": "Farmácia",
+        "amount": -25.42
+      },
+      {
+        "date": "26/09",
+        "description": "Farmácia",
+        "amount": -19.7
+      },
+      {
+        "date": "26/09",
+        "description": "Jucelen",
+        "amount": -15
+      },
+      {
+        "date": "26/09",
+        "description": "Café da tarde",
+        "amount": -35
+      },
+      {
+        "date": "26/09",
+        "description": "Farmácia Imperial",
+        "amount": -54.83
+      },
+      {
+        "date": "26/09",
+        "description": "Cigarro / Posto Fórmula 1",
+        "amount": -12
+      },
+      {
+        "date": "27/09",
+        "description": "Almoço",
+        "amount": -29
       }
     ]
   },
@@ -147,23 +151,5 @@
     "darf": 0,
     "status": "Em apuração até o fechamento de setembro"
   },
-  "reconciliation": {
-    "date": "27/09/2026",
-    "actual_nubank": 479.33,
-    "broker_patrimony": 140.58,
-    "broker_available_balance": 0,
-    "broker_future_settlements": 140.58,
-    "company_nubank": 365.32,
-    "company_broker": 140.58,
-    "company_total_by_notes_and_settlements": 505.9,
-    "personal_balance": 114.01,
-    "findings": [
-      "R$ 194,54 do resultado líquido de 23/09 e R$ 170,78 do resultado líquido de 24/09 estão na parcela da empresa dentro do Nubank.",
-      "R$ 140,58 do resultado líquido de 25/09 aparece na corretora como patrimônio integralmente em lançamentos futuros.",
-      "Farmácia Imperial de R$ 54,83 em 26/09 estava ausente do controle anterior.",
-      "A parcela da empresa de 23/09 estava registrada com diferença de R$ 0,05 (R$ 194,49 em vez de R$ 194,54).",
-      "O gasto de R$ 12,00 aparece no extrato em 26/09 no Posto Fórmula 1 e não deve ser duplicado em 27/09."
-    ],
-    "rule": "A empresa segue os resultados das notas de corretagem e suas liquidações. Dinheiro da empresa pode estar fisicamente no Nubank; a parcela particular é o saldo real do Nubank menos a parcela identificada da empresa."
-  }
+  "accounting_rule": "O dashboard não tenta dividir o saldo do Nubank entre particular e empresa. A conta é mista. Os resultados da empresa/trading seguem exclusivamente as notas de corretagem; os saldos físicos exibidos são apenas Nubank e corretora."
 }
