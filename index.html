@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0b1220">
 <title>RENDA EXTRA DT — Dashboard</title>
 <style>
-:root{--bg:#f5f7fb;--card:#fff;--ink:#111827;--muted:#667085;--line:#e6eaf0;--dark:#0b1220;--pos:#087f5b;--neg:#c92a2a;--accent:#2563eb}
+:root{--bg:#f5f7fb;--card:#fff;--ink:#111827;--muted:#667085;--line:#e6eaf0;--dark:#0b1220;--pos:#087f5b;--neg:#c92a2a;--accent:#2563eb;--warn:#b45309}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .wrap{max-width:1080px;margin:auto;padding:22px 16px 48px}.eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 h1{font-size:clamp(28px,5vw,42px);line-height:1.05;margin:8px 0 8px}.sub{color:var(--muted);margin:0 0 18px}
@@ -14,10 +14,10 @@ h1{font-size:clamp(28px,5vw,42px);line-height:1.05;margin:8px 0 8px}.sub{color:v
 .hero .value{font-size:clamp(40px,8vw,64px);font-weight:850;letter-spacing:-.04em;margin:4px 0 8px}.hero .meta{color:#cbd5e1}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 24px rgba(16,24,40,.04)}
 .card h2{font-size:18px;margin:0 0 4px}.label{font-size:13px;color:var(--muted)}.metric{font-size:30px;font-weight:800;letter-spacing:-.03em;margin-top:4px}
-.pos{color:var(--pos)}.neg{color:var(--neg)}.section{margin-top:18px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 0 10px}.section-head h2{margin:0;font-size:21px}
-.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:#fff}table{width:100%;border-collapse:collapse;min-width:620px}th,td{padding:13px 14px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:#fafbfc}tr:last-child td{border-bottom:0}.num{text-align:right;font-variant-numeric:tabular-nums}
+.pos{color:var(--pos)}.neg{color:var(--neg)}.warn{color:var(--warn)}.section{margin-top:18px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 0 10px}.section-head h2{margin:0;font-size:21px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:#fff}table{width:100%;border-collapse:collapse;min-width:700px}th,td{padding:13px 14px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:#fafbfc}tr:last-child td{border-bottom:0}.num{text-align:right;font-variant-numeric:tabular-nums}
 .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);padding:8px 10px;border-radius:999px;font-size:13px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.note{font-size:13px;color:var(--muted);line-height:1.45}.footer{margin-top:22px;text-align:center;color:var(--muted);font-size:12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.note{font-size:13px;color:var(--muted);line-height:1.5}.rule{margin-top:14px;border-left:4px solid var(--accent);background:#eef4ff;padding:14px 16px;border-radius:12px;font-size:14px;line-height:1.5}.footer{margin-top:22px;text-align:center;color:var(--muted);font-size:12px}
 @media(max-width:760px){.grid,.two{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.wrap{padding:16px 12px 36px}.hero{padding:20px}.card{padding:16px}}
 </style>
 </head>
@@ -25,75 +25,83 @@ h1{font-size:clamp(28px,5vw,42px);line-height:1.05;margin:8px 0 8px}.sub{color:v
 <main class="wrap">
   <div class="eyebrow">Atualizado <span id="updated">—</span></div>
   <h1>Dashboard RENDA EXTRA DT</h1>
-  <p class="sub">Caixa particular, empresa, trading e fiscal em controles separados.</p>
+  <p class="sub">Saldos físicos e resultado do trading separados, sem inventar divisão do Nubank entre particular e empresa.</p>
 
   <section class="hero">
-    <div class="eyebrow" style="color:#94a3b8">Total geral disponível</div>
-    <div class="value" id="total">R$ 0,00</div>
-    <div class="meta">Particular <strong id="personalHero">R$ 0,00</strong> • Empresa <strong id="companyHero">R$ 0,00</strong></div>
+    <div class="eyebrow" style="color:#94a3b8">Total financeiro visível</div>
+    <div class="value" id="totalVisible">R$ 0,00</div>
+    <div class="meta">Nubank <strong id="nubankHero">R$ 0,00</strong> • Corretora <strong id="brokerHero">R$ 0,00</strong></div>
     <div class="pills">
-      <span class="pill">Nubank total: <strong id="nubankTotal">R$ 0,00</strong></span>
       <span class="pill">Trading acumulado: <strong id="tradingAccum">R$ 0,00</strong></span>
-      <span class="pill">DARF: <strong id="darfHero">R$ 0,00</strong></span>
+      <span class="pill">Última nota: <strong id="lastNetHero">R$ 0,00</strong></span>
+      <span class="pill">DARF atual: <strong id="darfHero">R$ 0,00</strong></span>
     </div>
   </section>
 
   <section class="grid">
-    <article class="card"><div class="label">Saldo particular</div><div class="metric" id="personal">R$ 0,00</div><div class="note">Movimentações pessoais sem alterar o resultado da empresa.</div></article>
-    <article class="card"><div class="label">Caixa da empresa</div><div class="metric" id="company">R$ 0,00</div><div class="note"><span id="companyNubank">R$ 0,00</span> no Nubank + <span id="companyBroker">R$ 0,00</span> na corretora.</div></article>
-    <article class="card"><div class="label">Resultado líquido do trading</div><div class="metric" id="trading">R$ 0,00</div><div class="note">Acumulado oficial de 15 a 25/09, incluindo custos e IRRF.</div></article>
+    <article class="card"><div class="label">Saldo real no Nubank</div><div class="metric" id="nubank">R$ 0,00</div><div class="note">Conta mista. O dashboard não força uma divisão artificial entre particular e empresa.</div></article>
+    <article class="card"><div class="label">Patrimônio na corretora</div><div class="metric" id="broker">R$ 0,00</div><div class="note"><span id="brokerAvailable">R$ 0,00</span> disponível agora • <span id="brokerFuture">R$ 0,00</span> em lançamentos futuros.</div></article>
+    <article class="card"><div class="label">Resultado líquido do trading</div><div class="metric" id="trading">R$ 0,00</div><div class="note">Soma oficial das 9 notas de 15 a 25/09/2026.</div></article>
+  </section>
+
+  <div class="rule" id="rule"></div>
+
+  <section class="section two">
+    <article class="card">
+      <h2>Consolidado das notas</h2>
+      <div class="label">Resultado bruto acumulado</div><div class="metric" id="gross">R$ 0,00</div>
+      <div class="note">Despesas BM&F: <strong id="bmf">R$ 0,00</strong> • IRRF Day Trade: <strong id="irrfTrading">R$ 0,00</strong>.</div>
+    </article>
+    <article class="card">
+      <h2>Último pregão — 25/09</h2>
+      <div class="label">Líquido oficial da nota</div><div class="metric pos" id="lastNet">R$ 0,00</div>
+      <div class="note">Bruto <span id="lastGross">R$ 0,00</span> • BM&F <span id="lastBmf">R$ 0,00</span> • IRRF <span id="lastIrrf">R$ 0,00</span>.</div>
+    </article>
   </section>
 
   <section class="section">
-    <div class="section-head"><h2>Movimentações particulares</h2><span class="note">Últimos registros</span></div>
-    <div class="table-wrap"><table><thead><tr><th>Data</th><th>Descrição</th><th class="num">Valor</th><th class="num">Saldo após</th></tr></thead><tbody id="movements"></tbody></table></div>
+    <div class="section-head"><h2>Histórico oficial do trading</h2><span class="note">Fonte: notas de corretagem</span></div>
+    <div class="table-wrap"><table><thead><tr><th>Data</th><th class="num">Bruto</th><th class="num">BM&F</th><th class="num">IRRF</th><th class="num">Líquido</th><th class="num">Acumulado</th></tr></thead><tbody id="tradingRows"></tbody></table></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Despesas particulares registradas</h2><span class="note">Desde 25/09: <strong id="personalSpend">R$ 0,00</strong></span></div>
+    <div class="table-wrap"><table><thead><tr><th>Data</th><th>Descrição</th><th class="num">Valor</th></tr></thead><tbody id="personalRows"></tbody></table></div>
   </section>
 
   <section class="section two">
     <article class="card">
-      <h2>Último pregão — 25/09</h2>
-      <div class="label">Líquido oficial</div><div class="metric pos" id="lastNet">R$ 0,00</div>
-      <div class="note">Bruto <span id="lastGross">R$ 0,00</span> • custos + IRRF <span id="lastCosts">R$ 0,00</span>.</div>
+      <h2>Fiscal — setembro/2026</h2>
+      <div class="label">Resultado fiscal acumulado</div><div class="metric" id="fiscal">R$ 0,00</div>
+      <div class="note">IRRF acumulado <strong id="taxIrrf">R$ 0,00</strong> • IR devido <strong id="irDue">R$ 0,00</strong> • DARF 6015 <strong id="darf">R$ 0,00</strong>.</div>
     </article>
     <article class="card">
-      <h2>Fiscal — setembro/2026</h2>
-      <div class="label">Resultado fiscal acumulado</div><div class="metric" id="fiscalResult">R$ 0,00</div>
-      <div class="note">IRRF acumulado <strong id="irrf">R$ 0,00</strong> • IR devido <strong id="irDue">R$ 0,00</strong> • DARF 6015 <strong id="darf">R$ 0,00</strong>.</div>
+      <h2>Como ler este painel</h2>
+      <div class="note">O saldo do Nubank mostra o dinheiro que existe na conta. O patrimônio da corretora mostra o que está nela. O resultado do trading mostra quanto as operações ganharam ou perderam pelas notas. São três informações diferentes.</div>
     </article>
   </section>
 
-  <section class="section">
-    <div class="section-head"><h2>Histórico oficial do trading</h2><span class="note">15 a 25/09/2026</span></div>
-    <div class="table-wrap"><table><thead><tr><th>Data</th><th class="num">Bruto</th><th class="num">Custos + IRRF</th><th class="num">Líquido</th><th class="num">Acumulado</th></tr></thead><tbody id="tradingRows"></tbody></table></div>
-  </section>
-
-  <div class="footer">RENDA EXTRA DT • Dados carregados do arquivo data.json do próprio repositório.</div>
+  <div class="footer">RENDA EXTRA DT • Dados financeiros reconciliados em 27/09/2026.</div>
 </main>
 
 <script>
 const BRL = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
-const cls = n => n > 0 ? 'pos' : n < 0 ? 'neg' : '';
 const money = n => BRL.format(n);
-fetch('data.json?t='+Date.now(),{cache:'no-store'})
-  .then(r=>r.json()).then(d=>{
-    document.getElementById('updated').textContent = d.updated_at;
-    const c=d.cash, t=d.trading, x=d.tax;
-    const set=(id,v)=>document.getElementById(id).textContent=money(v);
-    set('total',c.total); set('personalHero',c.personal); set('companyHero',c.company_total);
-    set('nubankTotal',c.nubank_total); set('tradingAccum',t.accumulated_net); set('darfHero',x.darf);
-    set('personal',c.personal); set('company',c.company_total); set('companyNubank',c.company_nubank); set('companyBroker',c.company_broker);
-    set('trading',t.accumulated_net); document.getElementById('trading').className='metric '+cls(t.accumulated_net);
-    set('lastNet',t.last_day.net); set('lastGross',t.last_day.gross); set('lastCosts',t.last_day.costs_irrf);
-    set('fiscalResult',x.fiscal_result); document.getElementById('fiscalResult').className='metric '+cls(x.fiscal_result);
-    set('irrf',x.irrf_credit); set('irDue',x.ir_due); set('darf',x.darf);
-    document.getElementById('movements').innerHTML = d.personal_movements.slice().reverse().map(m =>
-      '<tr><td>'+m.date+'</td><td>'+m.description+'</td><td class="num '+cls(m.amount)+'">'+money(m.amount)+'</td><td class="num">'+money(m.balance_after)+'</td></tr>'
-    ).join('');
-    document.getElementById('tradingRows').innerHTML = t.days.map(r =>
-      '<tr><td>'+r.date+'</td><td class="num '+cls(r.gross)+'">'+money(r.gross)+'</td><td class="num">'+money(r.costs_irrf)+'</td><td class="num '+cls(r.net)+'">'+money(r.net)+'</td><td class="num '+cls(r.acc)+'">'+money(r.acc)+'</td></tr>'
-    ).join('');
-  }).catch(()=>{
-    document.querySelector('.sub').textContent='Não foi possível carregar os dados agora. Atualize a página.';
-  });
+const cls = n => n > 0 ? 'pos' : n < 0 ? 'neg' : '';
+fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
+  const b=d.balances,t=d.trading,p=d.personal,x=d.tax,set=(id,v)=>document.getElementById(id).textContent=money(v);
+  document.getElementById('updated').textContent=d.updated_at;
+  set('totalVisible',b.total_visible); set('nubankHero',b.nubank_actual); set('brokerHero',b.broker_patrimony);
+  set('tradingAccum',t.accumulated_net); set('lastNetHero',t.last_day.net); set('darfHero',x.darf);
+  set('nubank',b.nubank_actual); set('broker',b.broker_patrimony); set('brokerAvailable',b.broker_available); set('brokerFuture',b.broker_future);
+  set('trading',t.accumulated_net); document.getElementById('trading').className='metric '+cls(t.accumulated_net);
+  set('gross',t.total_gross); set('bmf',t.bmf_expenses); set('irrfTrading',t.irrf_daytrade);
+  set('lastNet',t.last_day.net); set('lastGross',t.last_day.gross); set('lastBmf',t.last_day.bmf_expenses); set('lastIrrf',t.last_day.irrf);
+  set('personalSpend',p.spending_since_25);
+  set('fiscal',x.fiscal_result); document.getElementById('fiscal').className='metric '+cls(x.fiscal_result); set('taxIrrf',x.irrf_credit); set('irDue',x.ir_due); set('darf',x.darf);
+  document.getElementById('rule').textContent=d.accounting_rule;
+  document.getElementById('tradingRows').innerHTML=t.days.map(r=>'<tr><td>'+r.date+'</td><td class="num '+cls(r.gross)+'">'+money(r.gross)+'</td><td class="num">'+money(r.bmf_expenses)+'</td><td class="num">'+money(r.irrf)+'</td><td class="num '+cls(r.net)+'">'+money(r.net)+'</td><td class="num '+cls(r.acc)+'">'+money(r.acc)+'</td></tr>').join('');
+  document.getElementById('personalRows').innerHTML=p.movements.slice().reverse().map(r=>'<tr><td>'+r.date+'</td><td>'+r.description+'</td><td class="num '+cls(r.amount)+'">'+money(r.amount)+'</td></tr>').join('');
+}).catch(()=>{document.querySelector('.sub').textContent='Não foi possível carregar os dados agora. Atualize a página.'});
 </script>
 </body></html>
