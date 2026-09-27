@@ -65,7 +65,7 @@ h1{font-size:clamp(28px,5vw,42px);line-height:1.05;margin:8px 0 8px}.sub{color:v
   </section>
 
   <section class="section">
-    <div class="section-head"><h2>Despesas particulares registradas</h2><span class="note">Desde 25/09: <strong id="personalSpend">R$ 0,00</strong></span></div>
+    <div class="section-head"><h2>Movimentações particulares</h2><span class="note">Saídas <strong id="personalSpend">R$ 0,00</strong> • Entradas <strong id="personalReceipts">R$ 0,00</strong> • Líquido <strong id="personalNet">R$ 0,00</strong></span></div>
     <div class="table-wrap"><table><thead><tr><th>Data</th><th>Descrição</th><th class="num">Valor</th></tr></thead><tbody id="personalRows"></tbody></table></div>
   </section>
 
@@ -97,7 +97,7 @@ fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
   set('trading',t.accumulated_net); document.getElementById('trading').className='metric '+cls(t.accumulated_net);
   set('gross',t.total_gross); set('bmf',t.bmf_expenses); set('irrfTrading',t.irrf_daytrade);
   set('lastNet',t.last_day.net); set('lastGross',t.last_day.gross); set('lastBmf',t.last_day.bmf_expenses); set('lastIrrf',t.last_day.irrf);
-  set('personalSpend',p.spending_since_25);
+  set('personalSpend',p.spending_since_25); set('personalReceipts',p.receipts_since_25||0); set('personalNet',p.net_since_25||(-p.spending_since_25)); document.getElementById('personalNet').className=cls(p.net_since_25||(-p.spending_since_25));
   set('fiscal',x.fiscal_result); document.getElementById('fiscal').className='metric '+cls(x.fiscal_result); set('taxIrrf',x.irrf_credit); set('irDue',x.ir_due); set('darf',x.darf);
   document.getElementById('rule').textContent=d.accounting_rule;
   document.getElementById('tradingRows').innerHTML=t.days.map(r=>'<tr><td>'+r.date+'</td><td class="num '+cls(r.gross)+'">'+money(r.gross)+'</td><td class="num">'+money(r.bmf_expenses)+'</td><td class="num">'+money(r.irrf)+'</td><td class="num '+cls(r.net)+'">'+money(r.net)+'</td><td class="num '+cls(r.acc)+'">'+money(r.acc)+'</td></tr>').join('');
