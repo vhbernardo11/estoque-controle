@@ -1,12 +1,12 @@
 {
   "updated_at": "27/09/2026",
   "cash": {
-    "personal": 168.84,
-    "company_nubank": 194.49,
-    "company_broker": 311.36,
+    "personal": 114.03,
+    "company_nubank": 365.3,
+    "company_broker": 140.55,
     "company_total": 505.85,
-    "nubank_total": 363.33,
-    "total": 674.69
+    "nubank_total": 479.33,
+    "total": 619.88
   },
   "personal_movements": [
     {
@@ -140,5 +140,15 @@
     "ir_due": 0,
     "darf": 0,
     "status": "Em apuração até o fechamento de setembro"
+  },
+  "reconciliation": {
+    "date": "27/09/2026",
+    "actual_nubank": 479.33,
+    "actual_broker": 140.55,
+    "company_total_by_broker_notes": 505.85,
+    "company_nubank_remainder": 365.3,
+    "personal_balance": 114.03,
+    "personal_adjustment": -54.81,
+    "note": "Ajuste de conciliação; não é gasto. O total da empresa segue o controle das notas de corretagem."
   }
 }
