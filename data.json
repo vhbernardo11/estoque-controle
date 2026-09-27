@@ -1,12 +1,12 @@
 {
   "updated_at": "27/09/2026",
   "cash": {
-    "personal": 114.03,
-    "company_nubank": 365.3,
-    "company_broker": 140.55,
-    "company_total": 505.85,
+    "personal": 114.01,
+    "company_nubank": 365.32,
+    "company_broker": 140.58,
+    "company_total": 505.9,
     "nubank_total": 479.33,
-    "total": 619.88
+    "total": 619.91
   },
   "personal_movements": [
     {
@@ -46,16 +46,22 @@
       "balance_after": 209.84
     },
     {
-      "date": "27/09",
-      "description": "Almoço",
-      "amount": -29,
-      "balance_after": 180.84
+      "date": "26/09",
+      "description": "Farmácia Imperial",
+      "amount": -54.83,
+      "balance_after": 155.01
+    },
+    {
+      "date": "26/09",
+      "description": "Cigarro / Posto Fórmula 1",
+      "amount": -12,
+      "balance_after": 143.01
     },
     {
       "date": "27/09",
-      "description": "Cigarro",
-      "amount": -12,
-      "balance_after": 168.84
+      "description": "Almoço",
+      "amount": -29,
+      "balance_after": 114.01
     }
   ],
   "trading": {
@@ -144,11 +150,20 @@
   "reconciliation": {
     "date": "27/09/2026",
     "actual_nubank": 479.33,
-    "actual_broker": 140.55,
-    "company_total_by_broker_notes": 505.85,
-    "company_nubank_remainder": 365.3,
-    "personal_balance": 114.03,
-    "personal_adjustment": -54.81,
-    "note": "Ajuste de conciliação; não é gasto. O total da empresa segue o controle das notas de corretagem."
+    "broker_patrimony": 140.58,
+    "broker_available_balance": 0,
+    "broker_future_settlements": 140.58,
+    "company_nubank": 365.32,
+    "company_broker": 140.58,
+    "company_total_by_notes_and_settlements": 505.9,
+    "personal_balance": 114.01,
+    "findings": [
+      "R$ 194,54 do resultado líquido de 23/09 e R$ 170,78 do resultado líquido de 24/09 estão na parcela da empresa dentro do Nubank.",
+      "R$ 140,58 do resultado líquido de 25/09 aparece na corretora como patrimônio integralmente em lançamentos futuros.",
+      "Farmácia Imperial de R$ 54,83 em 26/09 estava ausente do controle anterior.",
+      "A parcela da empresa de 23/09 estava registrada com diferença de R$ 0,05 (R$ 194,49 em vez de R$ 194,54).",
+      "O gasto de R$ 12,00 aparece no extrato em 26/09 no Posto Fórmula 1 e não deve ser duplicado em 27/09."
+    ],
+    "rule": "A empresa segue os resultados das notas de corretagem e suas liquidações. Dinheiro da empresa pode estar fisicamente no Nubank; a parcela particular é o saldo real do Nubank menos a parcela identificada da empresa."
   }
 }
