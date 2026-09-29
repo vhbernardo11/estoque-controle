@@ -41,7 +41,7 @@ h1{font-size:clamp(28px,5vw,42px);line-height:1.05;margin:8px 0 8px}.sub{color:v
   <section class="grid">
     <article class="card"><div class="label">Saldo real no Nubank</div><div class="metric" id="nubank">R$ 0,00</div><div class="note">Conta mista. O dashboard não força uma divisão artificial entre particular e empresa.</div></article>
     <article class="card"><div class="label">Patrimônio na corretora</div><div class="metric" id="broker">R$ 0,00</div><div class="note"><span id="brokerAvailable">R$ 0,00</span> disponível agora • <span id="brokerFuture">R$ 0,00</span> em lançamentos futuros.</div></article>
-    <article class="card"><div class="label">Resultado líquido do trading</div><div class="metric" id="trading">R$ 0,00</div><div class="note">Soma oficial das 9 notas de 15 a 25/09/2026.</div></article>
+    <article class="card"><div class="label">Resultado líquido do trading</div><div class="metric" id="trading">R$ 0,00</div><div class="note">Soma oficial das 10 notas de 15 a 28/09/2026.</div></article>
   </section>
 
   <div class="rule" id="rule"></div>
@@ -53,9 +53,24 @@ h1{font-size:clamp(28px,5vw,42px);line-height:1.05;margin:8px 0 8px}.sub{color:v
       <div class="note">Despesas BM&F: <strong id="bmf">R$ 0,00</strong> • IRRF Day Trade: <strong id="irrfTrading">R$ 0,00</strong>.</div>
     </article>
     <article class="card">
-      <h2>Último pregão — 25/09</h2>
+      <h2>Último pregão oficial — <span id="lastDayDate">—</span></h2>
       <div class="label">Líquido oficial da nota</div><div class="metric pos" id="lastNet">R$ 0,00</div>
       <div class="note">Bruto <span id="lastGross">R$ 0,00</span> • BM&F <span id="lastBmf">R$ 0,00</span> • IRRF <span id="lastIrrf">R$ 0,00</span>.</div>
+    </article>
+  </section>
+
+  <section class="section two">
+    <article class="card">
+      <h2>29/09 — provisório</h2>
+      <div class="label">Resultado informado, ainda sem nota</div>
+      <div class="metric neg" id="provisionalResult">R$ 0,00</div>
+      <div class="note" id="provisionalStatus">Aguardando nota de corretagem.</div>
+    </article>
+    <article class="card">
+      <h2>Plano de risco — 30/09</h2>
+      <div class="label"><strong id="planContracts">0</strong> contratos WIN • relação <strong id="planRR">—</strong></div>
+      <div class="metric pos" id="planTarget">R$ 0,00</div>
+      <div class="note">Meta diária • Stop absoluto <strong class="neg" id="planStop">R$ 0,00</strong>.<br><span id="planRule"></span></div>
     </article>
   </section>
 
@@ -73,7 +88,7 @@ h1{font-size:clamp(28px,5vw,42px);line-height:1.05;margin:8px 0 8px}.sub{color:v
     <article class="card">
       <h2>Fiscal — setembro/2026</h2>
       <div class="label">Resultado fiscal acumulado</div><div class="metric" id="fiscal">R$ 0,00</div>
-      <div class="note">IRRF acumulado <strong id="taxIrrf">R$ 0,00</strong> • IR devido <strong id="irDue">R$ 0,00</strong> • DARF 6015 <strong id="darf">R$ 0,00</strong>.</div>
+      <div class="note">IRRF acumulado <strong id="taxIrrf">R$ 0,00</strong> • IR residual estimado <strong id="irDue">R$ 0,00</strong> • DARF atual <strong id="darf">R$ 0,00</strong>.<br><span id="taxStatus"></span></div>
     </article>
     <article class="card">
       <h2>Como ler este painel</h2>
@@ -81,7 +96,7 @@ h1{font-size:clamp(28px,5vw,42px);line-height:1.05;margin:8px 0 8px}.sub{color:v
     </article>
   </section>
 
-  <div class="footer">RENDA EXTRA DT • Dados financeiros reconciliados em 27/09/2026.</div>
+  <div class="footer">RENDA EXTRA DT • Dados reconciliados em 29/09/2026 • Trading oficial pelas notas até 28/09.</div>
 </main>
 
 <script>
@@ -93,12 +108,15 @@ fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
   document.getElementById('updated').textContent=d.updated_at;
   set('totalVisible',b.total_visible); set('nubankHero',b.nubank_actual); set('brokerHero',b.broker_patrimony);
   set('tradingAccum',t.accumulated_net); set('lastNetHero',t.last_day.net); set('darfHero',x.darf);
+  document.getElementById('lastDayDate').textContent=t.last_day.date;
   set('nubank',b.nubank_actual); set('broker',b.broker_patrimony); set('brokerAvailable',b.broker_available); set('brokerFuture',b.broker_future);
   set('trading',t.accumulated_net); document.getElementById('trading').className='metric '+cls(t.accumulated_net);
   set('gross',t.total_gross); set('bmf',t.bmf_expenses); set('irrfTrading',t.irrf_daytrade);
   set('lastNet',t.last_day.net); set('lastGross',t.last_day.gross); set('lastBmf',t.last_day.bmf_expenses); set('lastIrrf',t.last_day.irrf);
   set('personalSpend',p.spending_since_25); set('personalReceipts',p.receipts_since_25||0); set('personalNet',p.net_since_25||(-p.spending_since_25)); document.getElementById('personalNet').className=cls(p.net_since_25||(-p.spending_since_25));
-  set('fiscal',x.fiscal_result); document.getElementById('fiscal').className='metric '+cls(x.fiscal_result); set('taxIrrf',x.irrf_credit); set('irDue',x.ir_due); set('darf',x.darf);
+  set('fiscal',x.fiscal_result); document.getElementById('fiscal').className='metric '+cls(x.fiscal_result); set('taxIrrf',x.irrf_credit); set('irDue',x.ir_due_estimate||0); set('darf',x.darf); document.getElementById('taxStatus').textContent=x.status||'';
+  set('provisionalResult',d.provisional.informed_result); document.getElementById('provisionalStatus').textContent=d.provisional.status;
+  document.getElementById('planContracts').textContent=d.next_plan.contracts; document.getElementById('planRR').textContent=d.next_plan.risk_reward; set('planTarget',d.next_plan.target); set('planStop',d.next_plan.stop); document.getElementById('planRule').textContent=d.next_plan.rule;
   document.getElementById('rule').textContent=d.accounting_rule;
   document.getElementById('tradingRows').innerHTML=t.days.map(r=>'<tr><td>'+r.date+'</td><td class="num '+cls(r.gross)+'">'+money(r.gross)+'</td><td class="num">'+money(r.bmf_expenses)+'</td><td class="num">'+money(r.irrf)+'</td><td class="num '+cls(r.net)+'">'+money(r.net)+'</td><td class="num '+cls(r.acc)+'">'+money(r.acc)+'</td></tr>').join('');
   document.getElementById('personalRows').innerHTML=p.movements.slice().reverse().map(r=>'<tr><td>'+r.date+'</td><td>'+r.description+'</td><td class="num '+cls(r.amount)+'">'+money(r.amount)+'</td></tr>').join('');
