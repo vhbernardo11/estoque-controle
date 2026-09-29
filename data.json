@@ -1,5 +1,5 @@
 {
-  "updated_at": "27/09/2026",
+  "updated_at": "29/09/2026",
   "balances": {
     "nubank_actual": 599.33,
     "broker_patrimony": 140.58,
@@ -8,16 +8,19 @@
     "total_visible": 739.91
   },
   "trading": {
-    "total_gross": 244,
-    "bmf_expenses": 274,
-    "irrf_daytrade": 8.23,
-    "accumulated_net": -38.23,
+    "official_through": "28/09/2026",
+    "total_gross": 530,
+    "bmf_expenses": 280,
+    "irrf_daytrade": 11.03,
+    "fiscal_before_irrf": 250,
+    "accumulated_net": 238.97,
     "last_day": {
-      "date": "25/09",
-      "gross": 144,
-      "bmf_expenses": 2,
-      "irrf": 1.42,
-      "net": 140.58
+      "date": "28/09",
+      "gross": 286,
+      "bmf_expenses": 6,
+      "irrf": 2.8,
+      "net_before_irrf": 280,
+      "net": 277.2
     },
     "days": [
       {
@@ -91,8 +94,29 @@
         "irrf": 1.42,
         "net": 140.58,
         "acc": -38.23
+      },
+      {
+        "date": "28/09",
+        "gross": 286,
+        "bmf_expenses": 6,
+        "irrf": 2.8,
+        "net": 277.2,
+        "acc": 238.97
       }
     ]
+  },
+  "provisional": {
+    "date": "29/09/2026",
+    "informed_result": -287.5,
+    "status": "Aguardando nota de corretagem — fora do acumulado oficial"
+  },
+  "next_plan": {
+    "date": "30/09/2026",
+    "contracts": 5,
+    "target": 300,
+    "stop": -200,
+    "risk_reward": "1,5 : 1",
+    "rule": "Não aumentar a mão durante o pregão. Ao atingir -R$ 200 no acumulado, encerrar."
   },
   "personal": {
     "spending_since_25": 302.5,
@@ -152,11 +176,11 @@
     "net_since_25": -182.5
   },
   "tax": {
-    "fiscal_result": -30,
-    "irrf_credit": 8.23,
-    "ir_due": 0,
+    "fiscal_result": 250,
+    "irrf_credit": 11.03,
+    "ir_due_estimate": 38.97,
     "darf": 0,
-    "status": "Em apuração até o fechamento de setembro"
+    "status": "Estimativa parcial. Fechar somente após a última nota de setembro e considerar eventual prejuízo anterior compensável."
   },
-  "accounting_rule": "O dashboard não tenta dividir o saldo do Nubank entre particular e empresa. A conta é mista. Os resultados da empresa/trading seguem exclusivamente as notas de corretagem; os saldos físicos exibidos são apenas Nubank e corretora."
+  "accounting_rule": "O dashboard não tenta dividir o saldo do Nubank entre particular e empresa. A conta é mista. O resultado do trading segue exclusivamente as notas de corretagem. O valor informado de 29/09 permanece provisório e não entra no acumulado oficial até a nota ser conferida."
 }
